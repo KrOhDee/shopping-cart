@@ -49,10 +49,10 @@ export default function Cards(props) {
           ${props.price}
         </Card.Text>
         <Button
-          id={props.id}
           onClick={() => {
-            props.addToCartList(props.id, props.item);
+            props.carto(props.items, props.id);
           }}
+          id={props.id}
           style={buttonStyle}
           size="sm"
         >

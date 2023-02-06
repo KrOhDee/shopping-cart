@@ -10,26 +10,6 @@ export default function Shop(props) {
 
   const [cartList, setCartList] = useState([]);
 
-  function addToCart() {
-    setCart((prevCart) => prevCart + 1);
-  }
-
-  const addToCartList = (item, id) => {
-    setCartList((prevCart) => {
-      // Check if the item is already in the cart
-      const itemInCart = prevCart.find((cartItem) => cartItem.id === id);
-
-      // If the item is not in the cart, add it
-      if (!itemInCart) {
-        return [...prevCart, { ...item, item }];
-      }
-
-      // If the item is in the cart, return the previous cart
-      return prevCart;
-    });
-    console.log(cartList);
-  };
-
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then((res) => res.json())
@@ -37,6 +17,13 @@ export default function Shop(props) {
   }, []);
 
   console.log(items);
+
+  function carto(itemss, id) {
+    let item = itemss.find((item) => item.id === id);
+    cartList.push(item);
+    setCart((prevCart) => prevCart + 1);
+    console.log(cartList);
+  }
 
   const shopStyle = {
     backgroundColor: 'white',
@@ -70,9 +57,8 @@ export default function Shop(props) {
         image={item.image}
         price={item.price}
         title={item.title}
-        setCart={setCart}
-        addToCart={addToCart}
-        addToCartList={addToCartList}
+        items={items}
+        carto={carto}
       />
     );
   });
