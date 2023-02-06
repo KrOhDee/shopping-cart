@@ -1,7 +1,7 @@
-import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 import Cards from './Cards';
 import Modals from './Modals';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export default function Shop(props) {
   const [items, setItems] = useState([]);
@@ -20,7 +20,12 @@ export default function Shop(props) {
 
   function carto(itemss, id) {
     let item = itemss.find((item) => item.id === id);
-    cartList.push(item);
+    if (cartList.includes(item)) {
+      item.quantity += 1;
+    } else {
+      item.quantity = 1;
+      cartList.push(item);
+    }
     setCart((prevCart) => prevCart + 1);
     console.log(cartList);
   }
@@ -69,7 +74,10 @@ export default function Shop(props) {
         style={navStyle}
         className="bg-dark w-100vw text-white d-flex justify-content-around align-items-center"
       >
-        <span style={shopTextStyle}>Shop</span> <Modals cart={cart} />
+        <span style={shopTextStyle}>
+          PlanetRandomItems <FaShoppingCart />
+        </span>
+        <Modals cartList={cartList} cart={cart} />
       </div>
       <div style={itemsStyle}>{shopList}</div>
     </div>

@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav>
       <ul className="d-flex gap-4 list-unstyled justify-content-center">
         <li>
-          <Link className="text-decoration-none" to="/home">
+          <Link className="text-decoration-none" to="/">
             Home
           </Link>
         </li>
