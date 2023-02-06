@@ -50,8 +50,8 @@ export default function Cards(props) {
         </Card.Text>
         <Button
           id={props.id}
-          onClick={(e) => {
-            return console.log(e.target.id);
+          onClick={() => {
+            props.addToCartList(props.id, props.item);
           }}
           style={buttonStyle}
           size="sm"

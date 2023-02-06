@@ -15,7 +15,18 @@ export default function Shop(props) {
   }
 
   const addToCartList = (item, id) => {
-    setCartList();
+    setCartList((prevCart) => {
+      // Check if the item is already in the cart
+      const itemInCart = prevCart.find((cartItem) => cartItem.id === id);
+
+      // If the item is not in the cart, add it
+      if (!itemInCart) {
+        return [...prevCart, { ...item, item }];
+      }
+
+      // If the item is in the cart, return the previous cart
+      return prevCart;
+    });
     console.log(cartList);
   };
 
@@ -53,6 +64,7 @@ export default function Shop(props) {
   const shopList = items.map((item) => {
     return (
       <Cards
+        item={item}
         key={item.id}
         id={item.id}
         image={item.image}
@@ -60,6 +72,7 @@ export default function Shop(props) {
         title={item.title}
         setCart={setCart}
         addToCart={addToCart}
+        addToCartList={addToCartList}
       />
     );
   });
