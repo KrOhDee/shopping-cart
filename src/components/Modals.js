@@ -9,10 +9,19 @@ export default function Modals(props) {
 
   const cartSummary = props.cartList.map((item) => {
     return (
-      <>
+      <div key={item.id}>
         <p>
           {item.title} x{item.quantity}
-          <Button className="mx-3" size="sm " variant="danger">
+          <Button
+            className="mx-3"
+            id={item.id}
+            size="sm "
+            variant="danger"
+            onClick={(e) => {
+              console.log('e.target ');
+              props.remove(props.cartList, parseInt(e.target.id));
+            }}
+          >
             x
           </Button>
         </p>
@@ -21,7 +30,7 @@ export default function Modals(props) {
         <br />
         <br />
         <br />
-      </>
+      </div>
     );
   });
 
