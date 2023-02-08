@@ -11,22 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.homepage--h1 {
-  text-align: center;
-  padding: 30px;
-  font-size: 90px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-nav {
-  padding: 10px;
-}
-
-.item--img {
-  max-width: 50%;
-}
-
-.modal--img {
-  width: 50px;
-}

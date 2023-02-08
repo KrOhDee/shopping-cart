@@ -1,16 +1,31 @@
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const ulStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '25px',
+    marginLeft: '-40px',
+    listStyle: 'none',
+  };
+
+  const linkStyle = {
+    color: 'black',
+    textDecoration: 'none',
+    fontSize: '24px',
+    fontFamily: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+  };
+
   return (
     <nav>
-      <ul className="d-flex gap-4 list-unstyled justify-content-center">
+      <ul style={ulStyle}>
         <li>
-          <Link className="text-decoration-none" to="/">
+          <Link style={linkStyle} to="/">
             Home
           </Link>
         </li>
         <li>
-          <Link className="text-decoration-none" to="/shop">
+          <Link style={linkStyle} to="/shop">
             Shop
           </Link>
         </li>

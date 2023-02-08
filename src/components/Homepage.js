@@ -1,9 +1,29 @@
 export default function Homepage() {
+  const mainStyle = {
+    textAlign: 'center',
+    padding: '30px',
+    fontFamily: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+  };
+
+  const titleStyle = {
+    fontSize: '90px',
+    padding: '15px',
+  };
+
+  const alienLogoStyle = {
+    maxWidth: '250px',
+  };
+
   return (
     <div>
-      <header>
-        <h1 className="homepage--h1">Welcome to planet RandomItems!</h1>
-      </header>
+      <main style={mainStyle}>
+        <h1 style={titleStyle}>Welcome to planet RandomItems!</h1>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/620/620899.png"
+          alt="alien inside a ufo"
+          style={alienLogoStyle}
+        ></img>
+      </main>
     </div>
   );
 }

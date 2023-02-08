@@ -29,31 +29,36 @@ export default function Cards(props) {
     marginLeft: '80px',
     maxHeight: '30px',
     maxWidth: '300px',
+    border: '1px solid black',
   };
 
   const priceStyle = {
     width: '80px',
+    marginBottom: '1px',
+  };
+
+  const itemImageStyle = {
+    maxWidth: '50%',
   };
 
   return (
     <Card style={cardStyle}>
       <Card.Header>{props.title}</Card.Header>
       <Card.Body style={bodyStyle}>
-        <img className="item--img" src={props.image} alt="item being sold" />
+        <img style={itemImageStyle} src={props.image} alt="item being sold" />
       </Card.Body>
       <br />
       <br />
       <br />
       <Card.Footer style={footerStyle}>
-        <Card.Text className="my-1" style={priceStyle}>
-          ${props.price}
-        </Card.Text>
+        <Card.Text style={priceStyle}>${props.price}</Card.Text>
         <Button
           onClick={() => {
             props.carto(props.items, props.id);
           }}
           id={props.id}
           style={buttonStyle}
+          variant="light"
           size="sm"
         >
           Add To Cart
