@@ -1,18 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Shop from './components/Shop';
 import Navbar from './components/Navbar';
 
 function RouteSwitch() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route path="*" element={<Homepage />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
