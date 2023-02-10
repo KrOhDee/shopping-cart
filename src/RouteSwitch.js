@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, HashRoute } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Shop from './components/Shop';
 import Navbar from './components/Navbar';
@@ -8,9 +8,9 @@ function RouteSwitch() {
     <HashRouter>
       <Navbar />
       <Routes>
-        <Route path="*" element={<Homepage />} />
-        <Route path="/" element={<Homepage />} />
-        <Route path="/shop" element={<Shop />} />
+        <HashRoute path="*" element={<Homepage />} />
+        <HashRoute path="/" element={<Homepage />} />
+        <HashRoute path="/shop" element={<Shop />} />
       </Routes>
     </HashRouter>
   );
