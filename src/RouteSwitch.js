@@ -8,6 +8,7 @@ function RouteSwitch() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+        <Route path="*" component={<Homepage />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/shop" element={<Shop />} />
       </Routes>
