@@ -93,7 +93,7 @@ export default function Shop() {
         key={item.id}
         id={item.id}
         image={item.image}
-        price={item.price}
+        price={item.price.toFixed(2)}
         title={item.title}
         items={items}
         carto={carto}
