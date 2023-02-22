@@ -15,7 +15,19 @@ export default function Modals(props) {
     marginLeft: '10px',
   };
 
+  const totalStyle = {
+    backgroundColor: 'black',
+    color: 'white',
+    borderRadius: '5px',
+    padding: '5px',
+    fontSize: '1.2rem',
+    marginBottom: '0',
+  };
+
+  let totalCost = 0;
+
   const cartSummary = props.cartList.map((item) => {
+    totalCost += item.price * item.quantity;
     return (
       <div key={item.id}>
         <p>
@@ -54,6 +66,7 @@ export default function Modals(props) {
         <Modal.Body>
           {props.cartList.length === 0 && <p>Empty...</p>}
           {cartSummary}
+          <p style={totalStyle}>Total: ${totalCost.toFixed(2)}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
