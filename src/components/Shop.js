@@ -14,6 +14,7 @@ export default function Shop() {
     fetch('https://fakestoreapi.com/products')
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setItems(data);
         setIsLoading(false);
       })
@@ -92,6 +93,8 @@ export default function Shop() {
         item={item}
         key={item.id}
         id={item.id}
+        description={item.description}
+        rating={item.rating.rate}
         image={item.image}
         price={item.price.toFixed(2)}
         title={item.title}

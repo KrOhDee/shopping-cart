@@ -1,6 +1,13 @@
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
 
 export default function Cards(props) {
+  const [showModal, setShowModal] = useState(false);
+
+  function handleCardClick() {
+    setShowModal(!showModal);
+  }
+
   const cardStyle = {
     display: 'inline-block',
     width: '300px',
@@ -42,28 +49,40 @@ export default function Cards(props) {
   };
 
   return (
-    <Card style={cardStyle}>
-      <Card.Header>{props.title}</Card.Header>
-      <Card.Body style={bodyStyle}>
-        <img style={itemImageStyle} src={props.image} alt="item being sold" />
-      </Card.Body>
-      <br />
-      <br />
-      <br />
-      <Card.Footer style={footerStyle}>
-        <Card.Text style={priceStyle}>${props.price}</Card.Text>
-        <Button
-          onClick={() => {
-            props.carto(props.items, props.id);
-          }}
-          id={props.id}
-          style={buttonStyle}
-          variant="light"
-          size="sm"
-        >
-          Add To Cart
-        </Button>
-      </Card.Footer>
-    </Card>
+    <>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{props.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Description: {props.description} <br /> {props.rating} <br />{' '}
+          <img style={itemImageStyle} src={props.image} alt="item being sold" />{' '}
+          <br /> Price: {props.price} <br />
+        </Modal.Body>
+      </Modal>
+      <Card style={cardStyle}>
+        <Card.Header onClick={handleCardClick}>{props.title}</Card.Header>
+        <Card.Body onClick={handleCardClick} style={bodyStyle}>
+          <img style={itemImageStyle} src={props.image} alt="item being sold" />
+        </Card.Body>
+        <br />
+        <br />
+        <br />
+        <Card.Footer style={footerStyle}>
+          <Card.Text style={priceStyle}>${props.price}</Card.Text>
+          <Button
+            onClick={() => {
+              props.carto(props.items, props.id);
+            }}
+            id={props.id}
+            style={buttonStyle}
+            variant="light"
+            size="sm"
+          >
+            Add To Cart
+          </Button>
+        </Card.Footer>
+      </Card>
+    </>
   );
 }
