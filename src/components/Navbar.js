@@ -5,6 +5,7 @@ export default function Navbar() {
     display: 'flex',
     justifyContent: 'center',
     gap: '25px',
+    paddingTop: '15px',
     marginLeft: '-40px',
     listStyle: 'none',
   };

@@ -13,27 +13,24 @@ export default function Cards(props) {
     width: '300px',
   };
 
-  const bodyStyle = {
+  const cardBodyStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: '70%',
     position: 'relative',
     overflow: 'hidden',
+    cursor: 'pointer',
+  };
+
+  const cardHeaderStyle = {
+    cursor: 'pointer',
   };
 
   const alignRatingStyle = {
     display: 'flex',
     alignItems: 'center',
     gap: '2px',
-  };
-
-  const alignPriceStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2px',
-    margin: '0',
-    padding: '0',
   };
 
   const footerStyle = {
@@ -118,8 +115,10 @@ export default function Cards(props) {
         </Modal.Footer>
       </Modal>
       <Card style={cardStyle}>
-        <Card.Header onClick={handleCardClick}>{props.title}</Card.Header>
-        <Card.Body onClick={handleCardClick} style={bodyStyle}>
+        <Card.Header style={cardHeaderStyle} onClick={handleCardClick}>
+          {props.title}
+        </Card.Header>
+        <Card.Body onClick={handleCardClick} style={cardBodyStyle}>
           <img style={itemImageStyle} src={props.image} alt="item being sold" />
         </Card.Body>
         <br />

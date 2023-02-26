@@ -6,7 +6,7 @@ export default function Homepage() {
   };
 
   const titleStyle = {
-    fontSize: '90px',
+    fontSize: '10vw',
     padding: '15px',
   };
 
