@@ -22,6 +22,20 @@ export default function Cards(props) {
     overflow: 'hidden',
   };
 
+  const alignRatingStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '2px',
+  };
+
+  const alignPriceStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '2px',
+    margin: '0',
+    padding: '0',
+  };
+
   const footerStyle = {
     bottom: 0,
     width: '100%',
@@ -48,6 +62,16 @@ export default function Cards(props) {
     maxWidth: '50%',
   };
 
+  const itemModalImageStyle = {
+    maxWidth: '30%',
+    padding: '10px',
+    marginBottom: '10px',
+  };
+
+  const ratingStarStyle = {
+    maxWidth: '3%',
+  };
+
   return (
     <>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -55,10 +79,43 @@ export default function Cards(props) {
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Description: {props.description} <br /> {props.rating} <br />{' '}
-          <img style={itemImageStyle} src={props.image} alt="item being sold" />{' '}
-          <br /> Price: {props.price} <br />
+          {props.description} <br /> <br />{' '}
+          <span style={alignRatingStyle}>
+            {' '}
+            <b>Rating</b>: {props.rating}{' '}
+            <img
+              style={ratingStarStyle}
+              src="https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png"
+              alt="item being sold"
+            />
+          </span>{' '}
+          <br />{' '}
+          <img
+            style={itemModalImageStyle}
+            src={props.image}
+            alt="item being sold"
+          />{' '}
+          <br />{' '}
+          <span>
+            <b>Price</b>: ${props.price}{' '}
+          </span>{' '}
+          <br />
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCardClick}>
+            Close
+          </Button>
+          <Button
+            style={{ border: '1px solid black' }}
+            onClick={() => {
+              props.carto(props.items, props.id);
+            }}
+            id={props.id}
+            variant="light"
+          >
+            Add To Cart
+          </Button>
+        </Modal.Footer>
       </Modal>
       <Card style={cardStyle}>
         <Card.Header onClick={handleCardClick}>{props.title}</Card.Header>
