@@ -38,7 +38,6 @@ export default function Modals(props) {
             size="sm "
             variant="dark"
             onClick={(e) => {
-              console.log('e.target ');
               props.remove(props.cartList, parseInt(e.target.id));
             }}
           >
