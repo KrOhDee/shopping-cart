@@ -1,5 +1,6 @@
 import { Modal, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export default function Modals(props) {
   const [show, setShow] = useState(false);
@@ -55,8 +56,8 @@ export default function Modals(props) {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
-        Cart {props.cart > 0 && `(${props.cart})`}
+      <Button variant="dark" onClick={handleShow}>
+        Cart <FaShoppingCart />
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

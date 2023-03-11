@@ -106,6 +106,7 @@ export default function Cards(props) {
             style={{ border: '1px solid black' }}
             onClick={() => {
               props.carto(props.items, props.id);
+              props.alert();
             }}
             id={props.id}
             variant="light"
@@ -129,6 +130,7 @@ export default function Cards(props) {
           <Button
             onClick={() => {
               props.carto(props.items, props.id);
+              props.alert();
             }}
             id={props.id}
             style={buttonStyle}
