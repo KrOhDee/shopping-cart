@@ -97,13 +97,12 @@ export default function Shop() {
   };
 
   const inputStyle = {
-    width: '300px',
+    width: '279px',
     height: '30px',
     borderRadius: '10px',
     padding: '5px',
-    marginLeft: '35px',
     marginBottom: '20px',
-    marginRight: '5px',
+    marginLeft: '5px',
     outline: 'none',
     border: '1px solid black',
   };
@@ -112,6 +111,7 @@ export default function Shop() {
     item.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  //true when filtered items is 0 and items are done loading in
   const noResults = filteredItems.length === 0 && !isLoading;
 
   const shopList = filteredItems.map((item) => {
@@ -162,6 +162,7 @@ export default function Shop() {
           </Alert>
         )}
       </div>
+      <FaSearch style={{ marginLeft: '35px' }} />
       <input
         type="text"
         value={searchQuery}
@@ -169,7 +170,6 @@ export default function Shop() {
         placeholder="Search items by name..."
         style={inputStyle}
       />
-      <FaSearch />
       {noResults && (
         <p style={{ marginLeft: '35px', color: 'red' }}>No results found</p>
       )}
