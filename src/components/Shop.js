@@ -3,11 +3,13 @@ import Cards from './Cards';
 import Modals from './Modals';
 import { FaSearch } from 'react-icons/fa';
 import { Alert } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from './actions';
 
 export default function Shop() {
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState(0);
-  const [cartList, setCartList] = useState([]);
+  const cart = useSelector((state) => state.cart.cart);
+  const cartList = useSelector((state) => state.cart.cartList);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,36 +28,17 @@ export default function Shop() {
       });
   }, []);
 
+  const dispatch = useDispatch();
+
   //add to cart
   function carto(itemss, id) {
     let item = itemss.find((item) => item.id === id);
-    let updatedCartList = [...cartList];
-    let existingItemIndex = updatedCartList.findIndex((i) => i.id === item.id);
-    if (existingItemIndex !== -1) {
-      updatedCartList[existingItemIndex].quantity += 1;
-    } else {
-      item.quantity = 1;
-      updatedCartList.push(item);
-    }
-    setCartList(updatedCartList);
-    setCart((prevCart) => prevCart + 1);
+    dispatch(addToCart(item));
   }
   //remove from cart
   function cartoRemove(itemss, id) {
     let item = itemss.find((item) => item.id === id);
-
-    let existingItemIndex = cartList.findIndex((i) => i.id === item.id);
-    if (existingItemIndex !== -1) {
-      let updatedCartItem = { ...cartList[existingItemIndex] };
-      updatedCartItem.quantity -= 1;
-      if (updatedCartItem.quantity === 0) {
-        cartList.splice(existingItemIndex, 1);
-      } else {
-        cartList[existingItemIndex] = updatedCartItem;
-      }
-    }
-    setCart((prevCart) => prevCart - 1);
-    setCartList((prevCartList) => [...prevCartList]);
+    dispatch(removeFromCart(item));
   }
 
   function handleAddToCartClick() {
