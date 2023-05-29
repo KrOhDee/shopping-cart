@@ -17,7 +17,7 @@ export default function Homepage() {
   return (
     <div>
       <main style={mainStyle}>
-        <h1 style={titleStyle}>Welcome to planet RandomItems!</h1>
+        <h1 style={titleStyle}>Welcome to PlanetRandomItems!</h1>
         <img
           src="https://cdn-icons-png.flaticon.com/512/620/620899.png"
           alt="alien inside a ufo"
