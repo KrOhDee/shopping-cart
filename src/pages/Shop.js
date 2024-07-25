@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import Cards from './Cards';
-import Modals from './Modals';
+import Cards from '../components/Cards';
+import Modals from '../components/Modals';
 import { FaSearch } from 'react-icons/fa';
 import { Alert } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from './actions';
+import { addToCart, removeFromCart } from '../redux/actions';
 
 export default function Shop() {
   const [items, setItems] = useState([]);
@@ -131,7 +131,7 @@ export default function Shop() {
       >
         {showAlert && (
           <Alert
-            variant="success"
+            variant='success'
             onClose={() => setShowAlert(false)}
             dismissible
             style={{
@@ -147,10 +147,10 @@ export default function Shop() {
       </div>
       <FaSearch style={{ marginLeft: '35px' }} />
       <input
-        type="text"
+        type='text'
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search items by name..."
+        placeholder='Search items by name...'
         style={inputStyle}
       />
       {noResults && (
