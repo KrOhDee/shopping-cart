@@ -1,5 +1,6 @@
 import { Card, Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import DescriptionModal from './DescriptionModal';
 
 export default function Cards({
   id,
@@ -37,12 +38,6 @@ export default function Cards({
     cursor: 'pointer',
   };
 
-  const alignRatingStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2px',
-  };
-
   const footerStyle = {
     bottom: 0,
     width: '100%',
@@ -69,58 +64,22 @@ export default function Cards({
     maxWidth: '50%',
   };
 
-  const itemModalImageStyle = {
-    maxWidth: '30%',
-    padding: '10px',
-    marginBottom: '10px',
-  };
-
-  const ratingStarStyle = {
-    maxWidth: '3%',
-  };
-
   return (
     <>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {description} <br /> <br />{' '}
-          <span style={alignRatingStyle}>
-            {' '}
-            <b>Rating</b>: {rating}{' '}
-            <img
-              style={ratingStarStyle}
-              src='https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png'
-              alt='item being sold'
-            />
-          </span>{' '}
-          <br />{' '}
-          <img style={itemModalImageStyle} src={image} alt='item being sold' />{' '}
-          <br />{' '}
-          <span>
-            <b>Price</b>: ${price}{' '}
-          </span>{' '}
-          <br />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleCardClick}>
-            Close
-          </Button>
-          <Button
-            style={{ border: '1px solid black' }}
-            onClick={() => {
-              cartAdd(items, id);
-              alert();
-            }}
-            id={id}
-            variant='light'
-          >
-            Add To Cart
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <DescriptionModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleCardClick={handleCardClick}
+        id={id}
+        description={description}
+        rating={rating}
+        image={image}
+        price={price}
+        title={title}
+        items={items}
+        cartAdd={cartAdd}
+        alert={alert}
+      />
       <Card style={cardStyle}>
         <Card.Header style={cardHeaderStyle} onClick={handleCardClick}>
           {title}
