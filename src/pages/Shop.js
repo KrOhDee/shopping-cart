@@ -68,6 +68,7 @@ export default function Shop() {
     zIndex: 1,
     marginBottom: '30px',
     backgroundColor: 'black',
+    opacity: '90%',
   };
 
   // const itemCartStyle = {

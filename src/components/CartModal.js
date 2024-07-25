@@ -31,6 +31,7 @@ export default function CartModal({ cartList, remove }) {
     padding: '5px',
     fontSize: '1.2rem',
     marginBottom: '0',
+    opacity: '80%',
   };
 
   let totalCost = 0;
@@ -45,7 +46,7 @@ export default function CartModal({ cartList, remove }) {
             style={modalButtonStyle}
             id={id}
             size='sm '
-            variant='dark'
+            variant='secondary'
             onClick={(e) => {
               remove(cartList, parseInt(e.target.id));
             }}
