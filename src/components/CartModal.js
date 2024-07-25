@@ -10,8 +10,8 @@ export default function CartModal({ cartList, remove }) {
 
   function truncateTitle(title) {
     const words = title.split(' ');
-    if (words.length > 3) {
-      return words.slice(0, 3).join(' ') + '...';
+    if (words.length > 7) {
+      return words.slice(0, 7).join(' ') + '...';
     }
     return title;
   }
