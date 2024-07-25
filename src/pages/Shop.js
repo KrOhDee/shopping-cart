@@ -96,21 +96,23 @@ export default function Shop() {
   //true when filtered items is 0 and items are done loading in
   const noResults = filteredItems.length === 0 && !isLoading;
 
-  const shopList = filteredItems.map((item) => {
-    return (
-      <Cards
-        id={item.id}
-        description={item.description}
-        rating={item.rating.rate}
-        image={item.image}
-        price={item.price.toFixed(2)}
-        title={item.title}
-        items={items}
-        cartAdd={cartAdd}
-        alert={handleAddToCartClick}
-      />
-    );
-  });
+  const shopList = filteredItems.map(
+    ({ title, id, description, rating, image, price }) => {
+      return (
+        <Cards
+          id={id}
+          description={description}
+          rating={rating.rate}
+          image={image}
+          price={price.toFixed(2)}
+          title={title}
+          items={items}
+          cartAdd={cartAdd}
+          alert={handleAddToCartClick}
+        />
+      );
+    }
+  );
 
   return (
     <>
