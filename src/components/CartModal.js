@@ -27,15 +27,15 @@ export default function CartModal({ cartList, remove }) {
 
   let totalCost = 0;
 
-  const cartSummary = cartList.map((item) => {
-    totalCost += item.price * item.quantity;
+  const cartSummary = cartList.map(({ price, quantity, id, title, image }) => {
+    totalCost += price * quantity;
     return (
-      <div key={item.id}>
+      <div key={id}>
         <p>
-          {item.title} x{item.quantity}
+          {title} x{quantity}
           <Button
             style={modalButtonStyle}
-            id={item.id}
+            id={id}
             size='sm '
             variant='dark'
             onClick={(e) => {
@@ -45,8 +45,8 @@ export default function CartModal({ cartList, remove }) {
             x
           </Button>
         </p>
-        <p>${item.price}</p>
-        <img style={modalImageStyle} src={item.image} alt='modal-img' />
+        <p>${price}</p>
+        <img style={modalImageStyle} src={image} alt='modal-img' />
         <br />
         <br />
         <br />
