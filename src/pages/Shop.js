@@ -160,7 +160,17 @@ export default function Shop() {
         style={inputStyle}
       />
       {noResults && (
-        <p style={{ marginLeft: '35px', color: 'red' }}>No results found.</p>
+        <p
+          style={{
+            textAlign: 'center',
+            color: 'red',
+            fontSize: '24px',
+            border: 'dashed 1px black',
+            padding: '5px',
+          }}
+        >
+          No Results Found.
+        </p>
       )}
 
       <div className='shop-items'>{shopList}</div>
