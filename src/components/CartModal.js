@@ -2,7 +2,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
-export default function Modals({ cartList, remove }) {
+export default function CartModal({ cartList, remove }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

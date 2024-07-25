@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Cards from '../components/Cards';
-import Modals from '../components/Modals';
+import CartModal from '../components/CartModal';
 import { FaSearch } from 'react-icons/fa';
 import { Alert } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -118,7 +118,7 @@ export default function Shop() {
     <>
       <div style={shopBarStyle}>
         <span style={shopTextStyle}>PlanetRandomItems</span>
-        <Modals cartList={cartList} remove={cartRemove} />
+        <CartModal cartList={cartList} remove={cartRemove} />
       </div>
       <div
         style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: '2' }}
