@@ -8,6 +8,14 @@ export default function CartModal({ cartList, remove }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function truncateTitle(title) {
+    const words = title.split(' ');
+    if (words.length > 3) {
+      return words.slice(0, 3).join(' ') + '...';
+    }
+    return title;
+  }
+
   const modalImageStyle = {
     width: '50px',
   };
@@ -32,7 +40,7 @@ export default function CartModal({ cartList, remove }) {
     return (
       <div key={id}>
         <p>
-          {title} x{quantity}
+          {truncateTitle(title)} x{quantity}
           <Button
             style={modalButtonStyle}
             id={id}
@@ -64,9 +72,11 @@ export default function CartModal({ cartList, remove }) {
           <Modal.Title>Cart Summary</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {cartList.length === 0 && <p>Empty...</p>}
+          {cartList.length === 0 && <p>Cart is empty.</p>}
           {cartSummary}
-          <p style={totalStyle}>Total: ${totalCost.toFixed(2)}</p>
+          {cartList.length > 0 && (
+            <p style={totalStyle}>Total: ${totalCost.toFixed(2)}</p>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
