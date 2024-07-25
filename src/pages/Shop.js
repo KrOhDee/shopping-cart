@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Cards from '../components/Cards';
+import { useState, useEffect, useRef } from 'react';
+import ItemCard from '../components/ItemCard';
 import CartModal from '../components/CartModal';
 import { FaSearch } from 'react-icons/fa';
 import { Alert } from 'react-bootstrap';
@@ -13,6 +13,7 @@ export default function Shop() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const alertTimeoutRef = useRef(null);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -29,12 +30,12 @@ export default function Shop() {
 
   const dispatch = useDispatch();
 
-  //add to cart
+  // add to cart
   function cartAdd(itemCart, id) {
     let item = itemCart.find((item) => item.id === id);
     dispatch(addToCart(item));
   }
-  //remove from cart
+  // remove from cart
   function cartRemove(itemCart, id) {
     let item = itemCart.find((item) => item.id === id);
     dispatch(removeFromCart(item));
@@ -43,7 +44,16 @@ export default function Shop() {
   function handleAddToCartClick() {
     console.log('handleAddToCartClick');
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 2000);
+
+    // check if alert timer, if so clear it
+    if (alertTimeoutRef.current) {
+      clearTimeout(alertTimeoutRef.current);
+    }
+
+    // set new timer
+    alertTimeoutRef.current = setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
   }
 
   const shopBarStyle = {
@@ -60,12 +70,12 @@ export default function Shop() {
     backgroundColor: 'black',
   };
 
-  const itemCartStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gridGap: '16px',
-    paddingLeft: '35px',
-  };
+  // const itemCartStyle = {
+  //   display: 'grid',
+  //   gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  //   gridGap: '16px',
+  //   paddingLeft: '35px',
+  // };
 
   const shopTextStyle = {
     fontSize: '30px',
@@ -79,7 +89,7 @@ export default function Shop() {
   };
 
   const inputStyle = {
-    width: '279px',
+    width: '240px',
     height: '30px',
     borderRadius: '10px',
     padding: '5px',
@@ -99,7 +109,8 @@ export default function Shop() {
   const shopList = filteredItems.map(
     ({ title, id, description, rating, image, price }) => {
       return (
-        <Cards
+        <ItemCard
+          key={id}
           id={id}
           description={description}
           rating={rating.rate}
@@ -148,10 +159,10 @@ export default function Shop() {
         style={inputStyle}
       />
       {noResults && (
-        <p style={{ marginLeft: '35px', color: 'red' }}>No results found</p>
+        <p style={{ marginLeft: '35px', color: 'red' }}>No results found.</p>
       )}
 
-      <div style={itemCartStyle}>{shopList}</div>
+      <div className='shop-items'>{shopList}</div>
       {hasError && (
         <p>
           An error occurred while fetching products. Please try again later.
