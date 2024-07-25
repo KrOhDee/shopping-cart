@@ -1,7 +1,17 @@
 import { Card, Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 
-export default function Cards(props) {
+export default function Cards({
+  id,
+  description,
+  rating,
+  image,
+  price,
+  title,
+  items,
+  cartAdd,
+  alert,
+}) {
   const [showModal, setShowModal] = useState(false);
 
   function handleCardClick() {
@@ -73,43 +83,39 @@ export default function Cards(props) {
     <>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>{props.title}</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.description} <br /> <br />{' '}
+          {description} <br /> <br />{' '}
           <span style={alignRatingStyle}>
             {' '}
-            <b>Rating</b>: {props.rating}{' '}
+            <b>Rating</b>: {rating}{' '}
             <img
               style={ratingStarStyle}
-              src="https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png"
-              alt="item being sold"
+              src='https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png'
+              alt='item being sold'
             />
           </span>{' '}
           <br />{' '}
-          <img
-            style={itemModalImageStyle}
-            src={props.image}
-            alt="item being sold"
-          />{' '}
+          <img style={itemModalImageStyle} src={image} alt='item being sold' />{' '}
           <br />{' '}
           <span>
-            <b>Price</b>: ${props.price}{' '}
+            <b>Price</b>: ${price}{' '}
           </span>{' '}
           <br />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCardClick}>
+          <Button variant='secondary' onClick={handleCardClick}>
             Close
           </Button>
           <Button
             style={{ border: '1px solid black' }}
             onClick={() => {
-              props.carto(props.items, props.id);
-              props.alert();
+              cartAdd(items, id);
+              alert();
             }}
-            id={props.id}
-            variant="light"
+            id={id}
+            variant='light'
           >
             Add To Cart
           </Button>
@@ -117,25 +123,25 @@ export default function Cards(props) {
       </Modal>
       <Card style={cardStyle}>
         <Card.Header style={cardHeaderStyle} onClick={handleCardClick}>
-          {props.title}
+          {title}
         </Card.Header>
         <Card.Body onClick={handleCardClick} style={cardBodyStyle}>
-          <img style={itemImageStyle} src={props.image} alt="item being sold" />
+          <img style={itemImageStyle} src={image} alt='item being sold' />
         </Card.Body>
         <br />
         <br />
         <br />
         <Card.Footer style={footerStyle}>
-          <Card.Text style={priceStyle}>${props.price}</Card.Text>
+          <Card.Text style={priceStyle}>${price}</Card.Text>
           <Button
             onClick={() => {
-              props.carto(props.items, props.id);
-              props.alert();
+              cartAdd(items, id);
+              alert();
             }}
-            id={props.id}
+            id={id}
             style={buttonStyle}
-            variant="light"
-            size="sm"
+            variant='light'
+            size='sm'
           >
             Add To Cart
           </Button>

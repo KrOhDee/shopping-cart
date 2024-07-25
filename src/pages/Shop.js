@@ -8,7 +8,6 @@ import { addToCart, removeFromCart } from '../redux/actions';
 
 export default function Shop() {
   const [items, setItems] = useState([]);
-  const cart = useSelector((state) => state.cart.cart);
   const cartList = useSelector((state) => state.cart.cartList);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,13 +30,13 @@ export default function Shop() {
   const dispatch = useDispatch();
 
   //add to cart
-  function carto(itemss, id) {
-    let item = itemss.find((item) => item.id === id);
+  function cartAdd(itemCart, id) {
+    let item = itemCart.find((item) => item.id === id);
     dispatch(addToCart(item));
   }
   //remove from cart
-  function cartoRemove(itemss, id) {
-    let item = itemss.find((item) => item.id === id);
+  function cartRemove(itemCart, id) {
+    let item = itemCart.find((item) => item.id === id);
     dispatch(removeFromCart(item));
   }
 
@@ -61,7 +60,7 @@ export default function Shop() {
     backgroundColor: 'black',
   };
 
-  const itemsStyle = {
+  const itemCartStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     gridGap: '16px',
@@ -100,8 +99,6 @@ export default function Shop() {
   const shopList = filteredItems.map((item) => {
     return (
       <Cards
-        item={item}
-        key={item.id}
         id={item.id}
         description={item.description}
         rating={item.rating.rate}
@@ -109,7 +106,7 @@ export default function Shop() {
         price={item.price.toFixed(2)}
         title={item.title}
         items={items}
-        carto={carto}
+        cartAdd={cartAdd}
         alert={handleAddToCartClick}
       />
     );
@@ -119,12 +116,7 @@ export default function Shop() {
     <>
       <div style={shopBarStyle}>
         <span style={shopTextStyle}>PlanetRandomItems</span>
-        <Modals
-          cartList={cartList}
-          cart={cart}
-          items={items}
-          remove={cartoRemove}
-        />
+        <Modals cartList={cartList} remove={cartRemove} />
       </div>
       <div
         style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: '2' }}
@@ -157,7 +149,7 @@ export default function Shop() {
         <p style={{ marginLeft: '35px', color: 'red' }}>No results found</p>
       )}
 
-      <div style={itemsStyle}>{shopList}</div>
+      <div style={itemCartStyle}>{shopList}</div>
       {hasError && (
         <p>
           An error occurred while fetching products. Please try again later.

@@ -2,7 +2,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
-export default function Modals(props) {
+export default function Modals({ cartList, remove }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,7 +27,7 @@ export default function Modals(props) {
 
   let totalCost = 0;
 
-  const cartSummary = props.cartList.map((item) => {
+  const cartSummary = cartList.map((item) => {
     totalCost += item.price * item.quantity;
     return (
       <div key={item.id}>
@@ -36,17 +36,17 @@ export default function Modals(props) {
           <Button
             style={modalButtonStyle}
             id={item.id}
-            size="sm "
-            variant="dark"
+            size='sm '
+            variant='dark'
             onClick={(e) => {
-              props.remove(props.cartList, parseInt(e.target.id));
+              remove(cartList, parseInt(e.target.id));
             }}
           >
             x
           </Button>
         </p>
         <p>${item.price}</p>
-        <img style={modalImageStyle} src={item.image} alt="modal-img" />
+        <img style={modalImageStyle} src={item.image} alt='modal-img' />
         <br />
         <br />
         <br />
@@ -56,7 +56,7 @@ export default function Modals(props) {
 
   return (
     <>
-      <Button variant="dark" onClick={handleShow}>
+      <Button variant='dark' onClick={handleShow}>
         Cart <FaShoppingCart />
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -64,15 +64,15 @@ export default function Modals(props) {
           <Modal.Title>Cart Summary</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.cartList.length === 0 && <p>Empty...</p>}
+          {cartList.length === 0 && <p>Empty...</p>}
           {cartSummary}
           <p style={totalStyle}>Total: ${totalCost.toFixed(2)}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button style={{ border: '1px solid black' }} variant="light">
+          <Button style={{ border: '1px solid black' }} variant='light'>
             Purchase
           </Button>
         </Modal.Footer>
