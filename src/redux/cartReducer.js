@@ -14,10 +14,14 @@ const cartReducer = (state = initialState, action) => {
       );
 
       if (existingItemIndex !== -1) {
-        updatedCartList[existingItemIndex].quantity += 1;
+        const updatedItem = {
+          ...updatedCartList[existingItemIndex],
+          quantity: updatedCartList[existingItemIndex].quantity + 1,
+        };
+        updatedCartList[existingItemIndex] = updatedItem;
       } else {
-        action.payload.quantity = 1;
-        updatedCartList.push(action.payload);
+        const newItem = { ...action.payload, quantity: 1 };
+        updatedCartList.push(newItem);
       }
 
       return {
