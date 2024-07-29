@@ -40,17 +40,17 @@ const DescriptionModal = ({
         <br />
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='secondary' onClick={handleCardClick}>
+        <Button variant='danger' onClick={handleCardClick}>
           Close
         </Button>
         <Button
-          className='add-to-cart-button'
           onClick={() => {
             cartAdd(items, id);
             alert();
           }}
           id={id}
           variant='light'
+          style={{ border: '1px solid black' }}
         >
           Add To Cart
         </Button>

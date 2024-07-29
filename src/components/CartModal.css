@@ -21,10 +21,6 @@
   opacity: 80%;
 }
 
-.purchase-button {
-  border: 1px solid black;
-}
-
 @media (min-width: 768px) {
   .cart-quantity {
     display: inline;

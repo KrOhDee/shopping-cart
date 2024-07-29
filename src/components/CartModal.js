@@ -32,7 +32,7 @@ export default function CartModal({ cartList, remove }) {
             className='modal-button'
             id={id}
             size='sm'
-            variant='secondary'
+            variant='danger'
             onClick={(e) => {
               remove(cartList, parseInt(e.target.id));
             }}
@@ -67,10 +67,10 @@ export default function CartModal({ cartList, remove }) {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant='danger' onClick={handleClose}>
             Close
           </Button>
-          <Button className='purchase-button' variant='light'>
+          <Button variant='light' style={{ border: '1px solid black' }}>
             Purchase
           </Button>
         </Modal.Footer>
