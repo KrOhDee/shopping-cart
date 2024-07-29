@@ -1,6 +1,7 @@
 import { Modal, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import './CartModal.css';
 
 export default function CartModal({ cartList, remove }) {
   const [show, setShow] = useState(false);
@@ -16,24 +17,6 @@ export default function CartModal({ cartList, remove }) {
     return title;
   }
 
-  const modalImageStyle = {
-    width: '50px',
-  };
-
-  const modalButtonStyle = {
-    marginLeft: '10px',
-  };
-
-  const totalStyle = {
-    backgroundColor: 'black',
-    color: 'white',
-    borderRadius: '5px',
-    padding: '5px',
-    fontSize: '1.2rem',
-    marginBottom: '0',
-    opacity: '80%',
-  };
-
   let totalCost = 0;
   let totalQuantity = 0;
 
@@ -46,7 +29,7 @@ export default function CartModal({ cartList, remove }) {
         <p>
           {truncateTitle(title)} x{quantity}
           <Button
-            style={modalButtonStyle}
+            className='modal-button'
             id={id}
             size='sm'
             variant='secondary'
@@ -58,7 +41,7 @@ export default function CartModal({ cartList, remove }) {
           </Button>
         </p>
         <p>${price}</p>
-        <img style={modalImageStyle} src={image} alt='modal-img' />
+        <img className='modal-image' src={image} alt='modal-img' />
         <br />
         <br />
         <br />
@@ -80,14 +63,14 @@ export default function CartModal({ cartList, remove }) {
           {cartList.length === 0 && <p>Cart is empty.</p>}
           {cartSummary}
           {cartList.length > 0 && (
-            <p style={totalStyle}>Total: ${totalCost.toFixed(2)}</p>
+            <p className='total'>Total: ${totalCost.toFixed(2)}</p>
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button style={{ border: '1px solid black' }} variant='light'>
+          <Button className='purchase-button' variant='light'>
             Purchase
           </Button>
         </Modal.Footer>

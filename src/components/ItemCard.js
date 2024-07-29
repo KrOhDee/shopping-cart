@@ -1,6 +1,7 @@
 import { Card, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import DescriptionModal from './DescriptionModal';
+import './ItemCard.css';
 
 export default function ItemCard({
   id,
@@ -27,51 +28,6 @@ export default function ItemCard({
     return title;
   }
 
-  const cardStyle = {
-    display: 'inline-block',
-    width: '80%',
-    height: '100%',
-  };
-
-  const cardBodyStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '200px',
-    position: 'relative',
-    overflow: 'hidden',
-    cursor: 'pointer',
-  };
-
-  const cardHeaderStyle = {
-    cursor: 'pointer',
-  };
-
-  const footerStyle = {
-    bottom: 0,
-    width: '100%',
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    fontSize: '20px',
-  };
-
-  const buttonStyle = {
-    marginLeft: '80px',
-    border: '1px solid black',
-    whiteSpace: 'nowrap',
-  };
-
-  const priceStyle = {
-    width: '80px',
-    marginBottom: '1px',
-  };
-
-  const itemImageStyle = {
-    width: '30%',
-  };
-
   return (
     <>
       <DescriptionModal
@@ -88,18 +44,18 @@ export default function ItemCard({
         cartAdd={cartAdd}
         alert={alert}
       />
-      <Card style={cardStyle}>
-        <Card.Header style={cardHeaderStyle} onClick={handleCardClick}>
+      <Card className='card'>
+        <Card.Header className='card-header' onClick={handleCardClick}>
           {truncateTitle(title)}
         </Card.Header>
-        <Card.Body onClick={handleCardClick} style={cardBodyStyle}>
-          <img style={itemImageStyle} src={image} alt='item being sold' />
+        <Card.Body className='card-body' onClick={handleCardClick}>
+          <img className='item-image' src={image} alt='item being sold' />
         </Card.Body>
         <br />
         <br />
         <br />
-        <Card.Footer style={footerStyle}>
-          <Card.Text style={priceStyle}>${price}</Card.Text>
+        <Card.Footer className='card-footer'>
+          <Card.Text className='price'>${price}</Card.Text>
           <Button
             onClick={() => {
               cartAdd(items, id);
@@ -107,7 +63,6 @@ export default function ItemCard({
             }}
             id={id}
             className='add-to-cart'
-            style={buttonStyle}
             variant='light'
             size='md'
           >

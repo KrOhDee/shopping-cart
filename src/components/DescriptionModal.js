@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import './DescriptionModal.css';
 
 const DescriptionModal = ({
   showModal,
@@ -15,22 +15,6 @@ const DescriptionModal = ({
   cartAdd,
   alert,
 }) => {
-  const alignRatingStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '2px',
-  };
-
-  const itemModalImageStyle = {
-    width: '30%',
-    padding: '10px',
-    marginBottom: '10px',
-  };
-
-  const ratingStarStyle = {
-    maxWidth: '3%',
-  };
-
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)}>
       <Modal.Header closeButton>
@@ -38,17 +22,17 @@ const DescriptionModal = ({
       </Modal.Header>
       <Modal.Body>
         {description} <br /> <br />{' '}
-        <span style={alignRatingStyle}>
+        <span className='align-rating'>
           {' '}
           <b>Rating</b>: {rating}{' '}
           <img
-            style={ratingStarStyle}
+            className='rating-star'
             src='https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png'
             alt='item being sold'
           />
         </span>{' '}
         <br />{' '}
-        <img style={itemModalImageStyle} src={image} alt='item being sold' />{' '}
+        <img className='item-modal-image' src={image} alt='item being sold' />{' '}
         <br />{' '}
         <span>
           <b>Price</b>: ${price}{' '}
@@ -60,7 +44,7 @@ const DescriptionModal = ({
           Close
         </Button>
         <Button
-          style={{ border: '1px solid black' }}
+          className='add-to-cart-button'
           onClick={() => {
             cartAdd(items, id);
             alert();

@@ -1,0 +1,44 @@
+.card {
+  display: inline-block;
+  width: 80%;
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card-header {
+  cursor: pointer;
+}
+
+.card-footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+.add-to-cart {
+  margin-left: 80px;
+  border: 1px solid black;
+  white-space: nowrap;
+}
+
+.price {
+  width: 80px;
+  margin-bottom: 1px;
+}
+
+.item-image {
+  width: 30%;
+}

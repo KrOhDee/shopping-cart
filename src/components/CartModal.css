@@ -1,0 +1,32 @@
+.cart-quantity {
+  display: none;
+  margin-left: 5px;
+}
+
+.modal-image {
+  width: 50px;
+}
+
+.modal-button {
+  margin-left: 10px;
+}
+
+.total {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  opacity: 80%;
+}
+
+.purchase-button {
+  border: 1px solid black;
+}
+
+@media (min-width: 768px) {
+  .cart-quantity {
+    display: inline;
+  }
+}

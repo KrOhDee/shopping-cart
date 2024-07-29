@@ -1,0 +1,19 @@
+.align-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.item-modal-image {
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.rating-star {
+  max-width: 3%;
+}
+
+.add-to-cart-button {
+  border: 1px solid black;
+}
