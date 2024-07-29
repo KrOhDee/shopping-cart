@@ -85,13 +85,22 @@ export default function Shop() {
         <span className='shop-name'>PlanetRandomItems</span>
         <CartModal cartList={cartList} remove={cartRemove} />
       </div>
-      <div className='alert-div'>
+      <div
+        // className=''
+        style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: '2' }}
+      >
         {showAlert && (
           <Alert
             variant='success'
             onClose={() => setShowAlert(false)}
             dismissible
-            className='fixed-alert'
+            // className=''
+            style={{
+              position: 'fixed',
+              top: 60,
+              left: 0,
+              right: 0,
+            }}
           >
             Item added to cart.
           </Alert>

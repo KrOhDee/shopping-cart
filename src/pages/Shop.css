@@ -14,7 +14,7 @@
 }
 
 .shop-name {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .shop-items {
@@ -55,9 +55,12 @@
   padding: 5px;
 }
 
-.alert-div {
+/* .alert-div {
   position: sticky;
   z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .fixed-alert {
@@ -65,7 +68,7 @@
   top: 60px;
   left: 0;
   right: 0;
-}
+} */
 
 @media (max-width: 900px) {
   .shop-items {
@@ -76,5 +79,11 @@
 @media (max-width: 600px) {
   .shop-items {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .shop-name {
+    font-size: 30px;
   }
 }
