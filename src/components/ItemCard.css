@@ -38,5 +38,11 @@
 }
 
 .item-image {
-  width: 30%;
+  width: 35%;
+}
+
+@media (min-width: 768px) {
+  .item-image {
+    width: 22%;
+  }
 }

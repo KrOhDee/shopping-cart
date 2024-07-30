@@ -19,7 +19,7 @@
 
 .shop-items {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   place-items: center;
   margin-bottom: 10px;
@@ -70,7 +70,7 @@
   right: 0;
 } */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .shop-items {
     grid-template-columns: repeat(2, 1fr);
   }
