@@ -3,13 +3,14 @@ import ItemCard from '../components/ItemCard';
 import CartModal from '../components/CartModal';
 import { FaSearch } from 'react-icons/fa';
 import { Alert } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../redux/actions';
+import useCartStore from '../store/useCartStore';
 import './Shop.css';
 
 export default function Shop() {
   const [items, setItems] = useState([]);
-  const cartList = useSelector((state) => state.cart.cartList);
+  const cartList = useCartStore((state) => state.cartList);
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,20 +30,17 @@ export default function Shop() {
       });
   }, []);
 
-  const dispatch = useDispatch();
-
   function cartAdd(itemCart, id) {
     let item = itemCart.find((item) => item.id === id);
-    dispatch(addToCart(item));
+    addToCart(item);
   }
 
   function cartRemove(itemCart, id) {
     let item = itemCart.find((item) => item.id === id);
-    dispatch(removeFromCart(item));
+    removeFromCart(item);
   }
 
   function handleAddToCartClick() {
-    console.log('handleAddToCartClick');
     setShowAlert(true);
 
     if (alertTimeoutRef.current) {
@@ -61,22 +59,20 @@ export default function Shop() {
   const noResults = filteredItems.length === 0 && !isLoading;
 
   const shopList = filteredItems.map(
-    ({ title, id, description, rating, image, price }) => {
-      return (
-        <ItemCard
-          key={id}
-          id={id}
-          description={description}
-          rating={rating.rate}
-          image={image}
-          price={price.toFixed(2)}
-          title={title}
-          items={items}
-          cartAdd={cartAdd}
-          alert={handleAddToCartClick}
-        />
-      );
-    }
+    ({ title, id, description, rating, image, price }) => (
+      <ItemCard
+        key={id}
+        id={id}
+        description={description}
+        rating={rating.rate}
+        image={image}
+        price={price.toFixed(2)}
+        title={title}
+        items={items}
+        cartAdd={cartAdd}
+        alert={handleAddToCartClick}
+      />
+    )
   );
 
   return (
@@ -86,7 +82,6 @@ export default function Shop() {
         <CartModal cartList={cartList} remove={cartRemove} />
       </div>
       <div
-        // className=''
         style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: '2' }}
       >
         {showAlert && (
@@ -94,7 +89,6 @@ export default function Shop() {
             variant='success'
             onClose={() => setShowAlert(false)}
             dismissible
-            // className=''
             style={{
               position: 'fixed',
               top: 60,
